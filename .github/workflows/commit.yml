@@ -1,0 +1,23 @@
+name: commit
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+          cache: 'yarn'
+      - run: yarn install
+      - run: yarn compile
+      - run: yarn test
+      - run: yarn postinstall
+      - run: yarn lint
+      - run: yarn prettier
