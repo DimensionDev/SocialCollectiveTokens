@@ -6,19 +6,31 @@ Do refer to:
 2. [Bonding Curve Parameters Sheet](https://docs.google.com/spreadsheets/d/17SsEZZDaxI6TUptftiDISpwWudkinwnRn_MhqoONcp4/edit?usp=sharing) - Find out how the parameters may influence the bonding curve shape.
 
 ## Getting Started
-This is a standard Hardhat project. To install:
+This is a standard Hardhat project. 
+
+### To install
 ```
 yarn install
 ```
-To build the project:
+
+### To build the project
 ```
 yarn compile
 ```
-To test the project:
+
+### To test the project
+To copy over your `INFURA_API_KEY` to `package.json`:
+```
+yarn preinstall
+```
+To [fork the mainnet](https://hardhat.org/guides/mainnet-forking.html) from block `12746317` for communciation with the DAI contract address:
+```
+yarn fork
+```
+To execute the test:
 ```
 yarn test
 ```
 
 ## For upgrading of contracts
-
 This project uses OpenZeppelin's upgradeable contracts plugin for Hardhat to ensure safe and compatible upgrades with future versions. Before deploying an upgraded contract, read the documentation at [openzeppelin-upgrades](https://github.com/OpenZeppelin/openzeppelin-upgrades).
