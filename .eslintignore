@@ -1,4 +1,5 @@
 # folders
+.openzeppelin/
 artifacts/
 build/
 cache/
