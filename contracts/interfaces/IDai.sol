@@ -35,7 +35,7 @@ interface IDai {
 
     // -- Getter functions for state variables --
     function balanceOf(address usr) external returns (uint256);
-    
+
     function allowance(address from, address to) external returns (uint256);
 
     // --- Token ---
