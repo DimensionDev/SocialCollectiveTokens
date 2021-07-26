@@ -15,6 +15,3 @@ jobs:
       - run: yarn postinstall
       - run: yarn lint
       - run: yarn prettier
-      - run: yarn postinstall
-      - run: yarn lint
-      - run: yarn prettier
