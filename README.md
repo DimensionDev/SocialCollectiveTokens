@@ -25,7 +25,7 @@ yarn preinstall
 ```
 To [fork the mainnet](https://hardhat.org/guides/mainnet-forking.html) from block `12746317` for communciation with the DAI contract address:
 ```
-yarn fork
+yarn hardhat node --fork https://eth-mainnet.alchemyapi.io/v2/${ALCHEMY_API_KEY}
 ```
 To execute the test:
 ```

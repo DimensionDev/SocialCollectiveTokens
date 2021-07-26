@@ -9,11 +9,27 @@ jobs:
         with:
           node-version: '14'
           cache: 'yarn'
+      - name: Create .env file with secrets
+        shell: bash
+        env:
+          INFURA_API_KEY: '${{ secrets.INFURA_API_KEY }}'
+          ALCHEMY_API_KEY: '${{ secrets.ALCHEMY_API_KEY }}'
+          ROPSTEN_PRIVATE_KEY: '${{ secrets.ROPSTEN_PRIVATE_KEY }}'
+        run: |
+          touch .env
+          echo INFURA_API_KEY="$INFURA_API_KEY" >> .env
+          echo ALCHEMY_API_KEY="$ALCHEMY_API_KEY" >> .env
+          echo ROPSTEN_PRIVATE_KEY="$ROPSTEN_PRIVATE_KEY" >> .env
       - run: yarn install
       - run: yarn compile
-      - run: yarn fork
+      - name: Fork Ethereum mainnet for testing
+        env:
+          ALCHEMY_API_KEY: '${{ secrets.ALCHEMY_API_KEY }}'
+        run: yarn hardhat node --fork https://eth-mainnet.alchemyapi.io/v2/"$ALCHEMY_API_KEY"
       - run: yarn test
-      - run: yarn postinstall
+      - name: Remove .env file
+        shell: bash
+        run: |
+          rm .env
       - run: yarn lint
       - run: yarn prettier
-      - run: yarn cleanup:config
