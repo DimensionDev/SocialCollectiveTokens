@@ -20,7 +20,7 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 });
 
 // Setting up of Hardhat config
-dotenvConfig({ path: resolve(__dirname, "./.env") });
+dotenvConfig({ path: resolve(__dirname, ".env") });
 
 const chainIds = {
   ganache: 1337,
@@ -31,11 +31,6 @@ const chainIds = {
   rinkeby: 4,
   ropsten: 3,
 };
-
-const mnemonic = process.env.MNEMONIC;
-if (!mnemonic) {
-  throw new Error("Please set your MNEMONIC in a .env file");
-}
 
 const infuraApiKey = process.env.INFURA_API_KEY;
 if (!infuraApiKey) {
@@ -61,9 +56,6 @@ const config: HardhatUserConfig = {
   },
   networks: {
     hardhat: {
-      accounts: {
-        mnemonic,
-      },
       chainId: chainIds.hardhat,
       forking: {
         url: `https://eth-mainnet.alchemyapi.io/v2/${process.env.ALCHEMY_API_KEY}`,
