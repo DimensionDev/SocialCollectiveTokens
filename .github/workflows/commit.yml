@@ -11,7 +11,9 @@ jobs:
           cache: 'yarn'
       - run: yarn install
       - run: yarn compile
+      - run: yarn fork
       - run: yarn test
       - run: yarn postinstall
       - run: yarn lint
       - run: yarn prettier
+      - run: yarn cleanup:config
