@@ -30,3 +30,11 @@ export interface CreatorSetupResult {
   growthFactor: BigNumber;
   constantFactor: BigNumber;
 }
+
+export interface CreatorSetupSuccess {
+  tokenId: BigNumber;
+  creatorAddress: string;
+  multipleFactor: BigNumber;
+  growthFactor: BigNumber;
+  constantFactor: BigNumber;
+}

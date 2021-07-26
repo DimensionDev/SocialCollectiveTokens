@@ -35,5 +35,5 @@ export const DAI_HOLDER_ADDRESS_2: string = "0xF977814e90dA44bFA03b6295A0616a897
 export const DAI_TRANSFER_AMOUNT: BigNumber = BigNumber.from(1000000); // 1 million DAI
 
 // ERC1967UpgradeUpgradeable.sol: Storage slot with the address of the current implementation.
-export const ADDR_STORAGE_PREFIX = '0x000000000000000000000000';
+export const ADDR_STORAGE_PREFIX = "0x000000000000000000000000";
 export const IMPL_STORAGE_POSITION = "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc";

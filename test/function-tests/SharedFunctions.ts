@@ -5,6 +5,7 @@ import { Context } from "mocha";
 import * as daiJsonABI from "../../artifacts/contracts/interfaces/IDai.sol/IDai.json";
 import * as scJsonABI from "../../artifacts/contracts/SocialController.sol/SocialController.json";
 import { SocialController } from "../../typechain";
+import { CreatorSetupSuccess } from "../../types";
 import { HUNDRED } from "../constants";
 
 export const scInterface = new ethers.utils.Interface(scJsonABI.abi);
@@ -22,7 +23,7 @@ export async function getResultFromSetupCreator(
   multipleFactor: BigNumber,
   growthFactor: BigNumber,
   constantFactor: BigNumber,
-) {
+): Promise<CreatorSetupSuccess> {
   await contract.setupCreator(multipleFactor, growthFactor, constantFactor);
   const logs = await ethers.provider.getLogs(contract.filters.CreatorSetupSuccess());
   const result = scInterface.parseLog(logs[0]);
@@ -49,7 +50,7 @@ export async function getResultFromSetupCreatorWithAccount(
   growthFactor: BigNumber,
   constantFactor: BigNumber,
   signer: SignerWithAddress,
-) {
+): Promise<CreatorSetupSuccess> {
   contract = contract.connect(signer);
   await contract.setupCreator(multipleFactor, growthFactor, constantFactor);
   const logs = await ethers.provider.getLogs(contract.filters.CreatorSetupSuccess());
@@ -77,12 +78,12 @@ export const getBuyPriceFromSublinearFormula = (
   constantFactor: BigNumber,
   qty: BigNumber,
   numOfOutstandingTokens: BigNumber,
-) => {
+): BigNumber => {
   const priceConstant = constantFactor.mul(qty);
   let priceNonConstant = BigNumber.from(0);
 
   for (let i = 1; i <= qty.toNumber(); i++) {
-    let currTokenIdx = numOfOutstandingTokens.add(i);
+    const currTokenIdx = numOfOutstandingTokens.add(i);
     // this doesn't work as `growthFactor.div(100).add(1)`== 1 everytime, since `growthFactor / 100` is always rounded down to 0
     // naturally the above ** ANY_EXPONENT would always equal to 1 --> the price will not increase
 
@@ -112,12 +113,12 @@ export const getSellPriceFromSublinearFormula = (
   constantFactor: BigNumber,
   qty: BigNumber,
   numOfOutstandingTokens: BigNumber,
-) => {
+): BigNumber => {
   const priceConstant = constantFactor.mul(qty);
   let priceNonConstant = BigNumber.from(0);
 
   for (let i = 0; i < qty.toNumber(); i++) {
-    let currTokenIdx = numOfOutstandingTokens.sub(i);
+    const currTokenIdx = numOfOutstandingTokens.sub(i);
     const log2Result = logarithm2(currTokenIdx);
     const numeratorLog = HUNDRED.add(growthFactor).pow(log2Result);
     const denominatorLog = HUNDRED.pow(log2Result);
@@ -140,7 +141,7 @@ export const getBuyPriceAndApproveBuyToken = async (
   constantFactor: BigNumber,
   buyAmount: BigNumber,
   ctx: Context,
-) => {
+): Promise<BigNumber> => {
   const calculatedPrice = getBuyPriceFromSublinearFormula(
     multipleFactor,
     growthFactor,
@@ -167,7 +168,7 @@ export const getSellPrice = (
   constantFactor: BigNumber,
   sellAmount: BigNumber,
   ctx: Context,
-) => {
+): BigNumber => {
   return getSellPriceFromSublinearFormula(
     multipleFactor,
     growthFactor,

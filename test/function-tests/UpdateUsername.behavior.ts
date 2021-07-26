@@ -69,7 +69,7 @@ export function shouldBehaveLikeUpdateUsername(): void {
   });
 
   it("should emit CreatorUsernameUpdated event correctly", async function () {
-    expect(await this.socialController.updateUsername(TWITTER_USERNAME_2, TWITTER_USERNAME_1))
+    await expect(await this.socialController.updateUsername(TWITTER_USERNAME_2, TWITTER_USERNAME_1))
       .to.emit(this.socialController, "CreatorUsernameUpdated")
       .withArgs(TWITTER_USERNAME_2, TWITTER_USERNAME_1);
 

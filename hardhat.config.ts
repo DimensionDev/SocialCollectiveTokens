@@ -1,5 +1,5 @@
 import "@nomiclabs/hardhat-waffle";
-import '@nomiclabs/hardhat-ethers';
+import "@nomiclabs/hardhat-ethers";
 import "@typechain/hardhat";
 import "hardhat-gas-reporter";
 import "solidity-coverage";
@@ -59,10 +59,10 @@ const config: HardhatUserConfig = {
       chainId: chainIds.hardhat,
       forking: {
         url: `https://eth-mainnet.alchemyapi.io/v2/${process.env.ALCHEMY_API_KEY}`,
-        blockNumber: 12746317
-      }
+        blockNumber: 12746317,
+      },
     },
-    ropsten: createTestnetConfig("ropsten", <string>process.env.ROPSTEN_PRIVATE_KEY)
+    ropsten: createTestnetConfig("ropsten", <string>process.env.ROPSTEN_PRIVATE_KEY),
   },
   paths: {
     artifacts: "./artifacts",
@@ -85,10 +85,9 @@ const config: HardhatUserConfig = {
         },
       },
       {
-        version: "0.5.12"
-      }
-    ]
-    
+        version: "0.5.12",
+      },
+    ],
   },
   typechain: {
     outDir: "typechain",

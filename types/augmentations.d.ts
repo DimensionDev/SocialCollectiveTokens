@@ -2,7 +2,7 @@
 import { JsonRpcSigner } from "@ethersproject/providers";
 import { Fixture } from "ethereum-waffle";
 import { BigNumber, ContractFactory } from "ethers";
-import { IDai, SocialController, SocialControllerV11NonUpgradeable } from "../typechain";
+import { IDai, SocialController } from "../typechain";
 import { CreatorDetails, CreatorSetupResult, Signers } from "./";
 
 declare module "mocha" {

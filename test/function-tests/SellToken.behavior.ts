@@ -20,8 +20,10 @@ export function shouldBehaveLikeSellToken(): void {
     const buyAmount = BigNumber.from(3);
 
     this.daiMainnetContract = this.daiMainnetContract.connect(this.signers.follower1);
-    this.originalFollowerDaiBalance = await this.daiMainnetContract.callStatic.balanceOf(this.signers.follower1.address);
-    getBuyPriceAndApproveBuyToken(multipleFactor, growthFactor, constantFactor, buyAmount, this);
+    this.originalFollowerDaiBalance = await this.daiMainnetContract.callStatic.balanceOf(
+      this.signers.follower1.address,
+    );
+    await getBuyPriceAndApproveBuyToken(multipleFactor, growthFactor, constantFactor, buyAmount, this);
 
     this.socialController = this.socialController.connect(this.signers.follower1);
     await this.socialController.buyToken(this.creatorSetupResult.tokenId, buyAmount);
@@ -63,8 +65,12 @@ export function shouldBehaveLikeSellToken(): void {
   });
 
   it("should return updated balances in contract and seller correctly", async function () {
-    const initialDaiBalanceForSeller = await this.daiMainnetContract.callStatic.balanceOf(this.signers.follower1.address);
-    const initialDaiBalanceForContract = await this.daiMainnetContract.callStatic.balanceOf(this.socialController.address);
+    const initialDaiBalanceForSeller = await this.daiMainnetContract.callStatic.balanceOf(
+      this.signers.follower1.address,
+    );
+    const initialDaiBalanceForContract = await this.daiMainnetContract.callStatic.balanceOf(
+      this.socialController.address,
+    );
     const initialCreatorTokenBalanceForSeller = await this.socialController.balanceOf(
       this.signers.follower1.address,
       this.creatorSetupResult.tokenId,
@@ -114,7 +120,7 @@ export function shouldBehaveLikeSellToken(): void {
 
     const buyAmount = BigNumber.from(1);
     this.daiMainnetContract = this.daiMainnetContract.connect(this.signers.follower1);
-    getBuyPriceAndApproveBuyToken(multipleFactor, growthFactor, constantFactor, buyAmount, this);
+    await getBuyPriceAndApproveBuyToken(multipleFactor, growthFactor, constantFactor, buyAmount, this);
 
     this.socialController = this.socialController.connect(this.signers.follower1);
     await this.socialController.buyToken(this.creatorSetupResult.tokenId, buyAmount);
@@ -144,7 +150,7 @@ export function shouldBehaveLikeSellToken(): void {
   it("should not make profit if tokens bought and sold immediately by same follower", async function () {
     const sellAmount = BigNumber.from(3);
 
-    await this.socialController.sellToken(this.creatorSetupResult.tokenId, sellAmount)
+    await this.socialController.sellToken(this.creatorSetupResult.tokenId, sellAmount);
     expect(await this.daiMainnetContract.callStatic.balanceOf(this.signers.follower1.address)).to.be.eq(
       this.originalFollowerDaiBalance,
     );

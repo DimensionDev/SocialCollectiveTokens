@@ -60,7 +60,7 @@ export function shouldBehaveLikeLinkPlatformAcc(): void {
 
     expect(idFromTwitterUsernameOne).to.be.eq(idFromFacebookUsername);
 
-    let filters = this.socialController.filters.PlatformAccLinked();
+    const filters = this.socialController.filters.PlatformAccLinked();
     // need to add fromBlock parameter, or default would be retrieving the most recent event
     let logs = await ethers.provider.getLogs({ ...filters, fromBlock: 0 });
     expect(logs.length).to.be.eq(2);
