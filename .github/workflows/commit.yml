@@ -27,10 +27,11 @@ jobs:
           ALCHEMY_API_KEY: "${{ secrets.ALCHEMY_API_KEY }}"
         run: nohup yarn hardhat node --fork https://eth-mainnet.alchemyapi.io/v2/"$ALCHEMY_API_KEY" &
       - run: yarn test
-      - name: Remove .env file
+      - name: Remove .env and nohup.out file
         shell: bash
         run: |
           # nohup.out generated from fork script
-          rm .env nohup.out
+          rm .env
+          rm -f -- nohup.out
       - run: yarn lint
       - run: yarn prettier
