@@ -4838,6 +4838,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"emoji-regex@npm:^9.2.2":
+  version: 9.2.2
+  resolution: "emoji-regex@npm:9.2.2"
+  checksum: f3029ec432745ecb7cf5dcea1bc9ad3d70714ef20fcae1dc87a422d3be68913c42ed3adbb86765e7aa6c723c3bcd5833b5f4e22ed06d5e5cb74e0f628d4fc95b
+  languageName: node
+  linkType: hard
+
 "encodeurl@npm:~1.0.2":
   version: 1.0.2
   resolution: "encodeurl@npm:1.0.2"
@@ -10486,6 +10493,22 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
+"prettier-plugin-solidity@npm:^1.0.0-beta.17":
+  version: 1.0.0-beta.17
+  resolution: "prettier-plugin-solidity@npm:1.0.0-beta.17"
+  dependencies:
+    "@solidity-parser/parser": ^0.13.2
+    emoji-regex: ^9.2.2
+    escape-string-regexp: ^4.0.0
+    semver: ^7.3.5
+    solidity-comments-extractor: ^0.0.7
+    string-width: ^4.2.2
+  peerDependencies:
+    prettier: ^2.3.0
+  checksum: 1fe8ae3f11c653356823d88ec2ee4c0f09192f1c6598d957f0fae805c35403a06efdea74396afe8b21a49274d00a60f71e77756d7659cc6eacc800608e969a01
+  languageName: node
+  linkType: hard
+
 "prettier@npm:^1.14.3":
   version: 1.19.1
   resolution: "prettier@npm:1.19.1"
@@ -11852,6 +11875,7 @@ resolve@1.1.x:
     hardhat-gas-reporter: ^1.0.4
     mocha: ^8.4.0
     prettier: ^2.3.0
+    prettier-plugin-solidity: ^1.0.0-beta.17
     solhint: ^3.3.6
     solhint-plugin-prettier: ^0.0.5
     solidity-coverage: ^0.7.16
@@ -11979,6 +12003,13 @@ resolve@1.1.x:
   version: 0.4.25
   resolution: "solidity-ast@npm:0.4.25"
   checksum: 22484316bb08b35d943c764cf34028502aa7c39eaf76b3c9282de2720814a1525e2dee9c16843a401f28c95702708f985c0f0faabbad8ad3f719ad4745d7566b
+  languageName: node
+  linkType: hard
+
+"solidity-comments-extractor@npm:^0.0.7":
+  version: 0.0.7
+  resolution: "solidity-comments-extractor@npm:0.0.7"
+  checksum: b3a463999290067e87f65335e0397d5932b21734c3b0867cad7dc710968120ec58e9f9a633001724b60a2bfb0c5d2aa90a7038fe2234fb130563564c5526200d
   languageName: node
   linkType: hard
 
@@ -12245,7 +12276,7 @@ resolve@1.1.x:
   languageName: node
   linkType: hard
 
-"string-width@npm:^4.1.0, string-width@npm:^4.2.0":
+"string-width@npm:^4.1.0, string-width@npm:^4.2.0, string-width@npm:^4.2.2":
   version: 4.2.2
   resolution: "string-width@npm:4.2.2"
   dependencies:
